@@ -1,11 +1,19 @@
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Upload from './pages/Upload'
 import './App.css'
 
 function App() {
   return (
-    <HashRouter className='App'>
+    <BrowserRouter className='App'>
       <h1>Nav</h1>
-    </HashRouter>
+      <main>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/upload' element={<Upload />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   )
 }
 
