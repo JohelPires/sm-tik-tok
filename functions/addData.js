@@ -1,5 +1,7 @@
 const { createClient } = require('@astrajs/collections')
 
+const collection = 'posts'
+
 exports.handler = async function (event, context, callback) {
   const astraClient = await createClient({
     astraDatabaseId: process.env.ASTRA_DB_ID,
@@ -10,6 +12,18 @@ exports.handler = async function (event, context, callback) {
 
   const posts = astraClient
     .namespace(process.env.ASTRA_DB_KEYSPACE)
-    .collection('posts')
-  console.log(astraClient)
+    .collection(collection)
+
+  try {
+    await posts.create('a post', { title: 'my first post' })
+    return {
+      statusCode: 200,
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      statusCode: 500,
+      body: JSON.stringify(error),
+    }
+  }
 }
