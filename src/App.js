@@ -2,11 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Upload from './pages/Upload'
 import './App.css'
+import Header from './components/Header'
 
 function App() {
   return (
     <BrowserRouter className='App'>
-      <h1>Nav</h1>
+      <Header />
       <main>
         <Routes>
           <Route exact path='/' element={<Home />} />
